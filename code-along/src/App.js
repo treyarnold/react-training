@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Radium, { StyleRoot } from 'radium';
-import './App.css';
+import styles from './App.module.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -49,10 +48,6 @@ class App extends Component {
       border: "1px solid blue",
       padding: ".5rem",
       cursor: "pointer",
-      ":hover": {
-        backgroundColor: "lightgreen",
-        color: "black"
-      }
     };
 
     let persons = null;
@@ -71,28 +66,21 @@ class App extends Component {
         </div> 
       )
       style.backgroundColor = "red";
-      style[":hover"] = {
-        backgroundColor: "salmon",
-        color: "black"
-      }
     }
 
-    let classes = [];
-    if (this.state.persons.length <= 2)  classes.push("red");
-    if (this.state.persons.length <= 1)  classes.push("bold");
-    
+    const classes = [];
+    if (this.state.persons.length <= 2) classes.push(styles.red);
+    if (this.state.persons.length <= 1) classes.push(styles.bold);
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1>Hi, I'm a Reach app</h1>
-          <p className={classes.join(" ")}>This works</p>
-          <button style={style} 
-            onClick={this.togglePersonsHandler}>Switch Name</button>
-          {persons}          
-        </div>
-      </StyleRoot>
+      <div className={styles.app}>
+        <h1>Hi, I'm a Reach app</h1>
+        <p className={classes.join(" ")}>This works</p>
+        <button style={style} 
+          onClick={this.togglePersonsHandler}>Switch Name</button>
+        {persons}          
+      </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;
