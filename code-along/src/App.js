@@ -41,16 +41,8 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      color: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: ".5rem",
-      cursor: "pointer",
-    };
-
     let persons = null;
+    let btnClass = "";
 
     if (this.state.showPersons){
       persons = (
@@ -64,8 +56,8 @@ class App extends Component {
               changed={(event) => this.nameChangedHandler(event, person.id)}/>
           })}          
         </div> 
-      )
-      style.backgroundColor = "red";
+      );
+      btnClass = styles.red
     }
 
     const classes = [];
@@ -75,8 +67,9 @@ class App extends Component {
       <div className={styles.app}>
         <h1>Hi, I'm a Reach app</h1>
         <p className={classes.join(" ")}>This works</p>
-        <button style={style} 
-          onClick={this.togglePersonsHandler}>Switch Name</button>
+        <button  
+          className ={btnClass}
+          onClick={this.togglePersonsHandler}>Toggle Persons</button>
         {persons}          
       </div>
     );
