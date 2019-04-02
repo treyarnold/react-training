@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import classes from './Cockpit.module.css'
 
 const cockpit = (props) => {
+  useEffect(() => {
+    console.log("[Cockpit.js] useEffect");
+    return () => {
+      console.log("[Cockpit.js] cleanup work in useEffect");
+    };
+  })
   const assignedClasses = [];
   let btnClass = "";
   
@@ -11,7 +17,7 @@ const cockpit = (props) => {
 
   return (
     <div className={classes.Cockpit}>
-      <h1>Hi, I'm a Reach app</h1>
+      <h1>{props.title}</h1>
       <p className={assignedClasses.join(" ")}>This works</p>
       <button  
         className ={btnClass}
